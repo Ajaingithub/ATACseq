@@ -1,0 +1,2 @@
+Changed the -o from the bash to ./ so that output in the working directory
+Also Keep the background_samplesheet and homer_samplesheet in the same order of the samples processing
