@@ -11,4 +11,6 @@ The functions can be used to perform PCA, Differential, kmeans clustering, Chrom
 
 Also you can perform preprocessing step using these function
 
+The Version Control has been done through RStudio
+
 If there is any issue please comment.
