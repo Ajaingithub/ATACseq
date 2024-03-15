@@ -1,6 +1,7 @@
 ##### Running Homer ########
 ### Running for comparison 1 
 # final_2 is the kmeans generated during the kmeans(df_scale, clus_num, nstart = 25) 
+# df_scale is the normalized scaled matrix generated from k_means_plots.R
 # df_scale is the cnts2.norm.sig.z.meds
 # colindex_arrange could be the column the way you want to arrange in the heatmap for the df_scale
 homer_ATAC <- function(saveDir,final_2,df_scale,colindex_arrange,column_anno=NULL){
