@@ -1,9 +1,5 @@
 # ATACseq
-
-- Name: Abhinav
-- Date Created: 19 July 2023
-- Email: abhinavjj@gmail.com
-- Purpose: Automation of the ATACseq pipeline
+Automation of the ATACseq pipeline
 
 ## Preprocessing
 
