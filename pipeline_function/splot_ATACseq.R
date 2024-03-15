@@ -1,3 +1,11 @@
+# This function is run before running the filtering which is done After_Splot.R. This provide the input for After_Splot.R function.
+# This function is used to identify the overlapping peaks between different samples and generate the Splot which could be used as a input for After_Splot.R function
+# It also generate the merge_peak matrix
+# peak_path: path for the narrow.peaks sample files
+# build:  Genome build (Default: hg38)
+# species: Default: human
+# saveDir: saving directory
+
 splot <- function(peak_path, build = "hg38", species = "human", saveDir){
   message("Reading all the narrow peaks\n")
   All <- lapply(peak_path,function(i){
