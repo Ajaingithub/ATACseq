@@ -1,14 +1,9 @@
-+#### Extracting nearby genes with ChipSeeker ######
+#### Extracting nearby genes with ChipSeeker ######
 ## To annotate the differential peaks ##
 ## Run it on the terminal for comparecluster
 
-chipseeker_ATAC <- function(saveDir,dds){
-  
-}
 #setwd("/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/ATAC_seq/toHg38/Analysis/Downstream_Run7_Good_QC_filter_removed_2_Outlier_adding_3_doubtful_add_24_samples_include_VZV/pre_EBV_vs_VZV_Old/Differential_all")
-
-# since we ahve already made the differential files during the homer that we will use for the chipseeker
-
+# since we have already made the differential files during the homer that we will use for the chipseeker
 
 cluster_diff_peaks <- list.files(paste(saveDir,"Homer",sep = ""),pattern = "_coordinates_df.bed",full.names = T)
 cluster_diff_peaks_name <- basename(cluster_diff_peaks)
@@ -168,8 +163,7 @@ p   <-   ggplot(formula_res_enrichGO_plot_2, aes(x=Group,y=Description, color=p.
         axis.text = element_text(size = 9),
         panel.background = element_rect(fill = 'white', colour = 'black'),
         panel.grid.minor = element_line(colour = "grey"),
-        panel.grid.major = element_line(colour = "grey")
-  )
+        panel.grid.major = element_line(colour = "grey"))
 
 pdf("EnrichGO_BP_chipseeker_pvalue_05.pdf", width = 8, height = 9)
 p
