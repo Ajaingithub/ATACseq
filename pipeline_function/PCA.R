@@ -1,3 +1,13 @@
+## This function is downstream analysis after filtering the peaks and removing the low quality and blacklisted region
+# Args:
+# cnts_path: this is a filter count matrix
+# sampleinfo: sample metadata
+# saveDir: saving directory
+# group_level: Sorting of the groups in the order like Young, Old, Older
+# label: In PCA ggplot label column for each points
+# color: In PCA ggplot color column for each points
+# shape: In PCA ggplot shape column for each points
+
 PCA_plot <- function(cnts_path, sampleinfo, saveDir, group_level, label, color="Group", shape = NULL){
   message("Loading the counts and the target file\n")
   cnts_forDESeq <- read.table(cnts_path, sep = "\t", header = T)
