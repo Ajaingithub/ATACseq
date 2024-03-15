@@ -1,16 +1,12 @@
-+
-  ### Merging bw files 
-  ### Merging bigwig files for ebv pre old cm, em, 
-  ##### BW and merge the BW ###########
+### Merging bw files 
+### Merging bigwig files for ebv pre old cm, em, 
+##### BW and merge the BW ###########
 ### Most of the stuff needs to be done in Bash but we can make the bash script using R commmands
 ## Ran this on the bash scripting making the bed --> bedgraph --> bigwig files.
 ## the code /research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/ATAC_seq/toHg38/Analysis/Downstream_Run7_Good_QC_filter_removed_2_Outlier_adding_3_doubtful_add_24_samples_include_VZV/sbatch 
 ## from the location you can identify the data. Keep h_vmem = 10G, and -pe threaded 10
 ## qsub -pe threaded 10 -l h_vmem=10G -N ATAC_seq -q 1-hour -o ${mySbatchDIR}/${tempSample}_log.txt -e ${mySbatchDIR}/${tempSample}_error.txt ${mySbatchDIR}/CreateTrackFiles.sh ${jobSample} ${depth}
 
-bw_merge <- function(trackDir,saveDir,){
-  
-}
 trackDir <- "/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Ines/CD8_lytic/tohg38/Analysis/downstream/CreateTracks/bigwig/bigwig_files/"
 setwd(trackDir)
 bwFileName <- list.files(pattern = ".bw.s20.w150sw.bw", full.names = TRUE)
