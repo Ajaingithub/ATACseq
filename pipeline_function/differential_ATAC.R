@@ -1,6 +1,6 @@
 ########## Differential ##############
 ### Differentiation ####
-# mainDir: The path where the 
+# mainDir: The path where the RDS is saved from PCA
 # compare group should provide the detail of the group that needs to be compared
 # main name is the name if the project for which session will be saved
 # saveDir where all the plots and the files will be saved
