@@ -1,3 +1,6 @@
+
+# Args:
+# All_merge_path: 
 After_Splot <- function(All_merge_path,overlaps,saveDir,bam_path,blacklist_region,sampleinfo){
   message("loading All merge file")
   All_merge <- read.table(All_merge_path, sep = "\t", header = TRUE)
