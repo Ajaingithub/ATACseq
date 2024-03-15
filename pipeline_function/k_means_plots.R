@@ -1,4 +1,12 @@
-## k_means heatmap
+## After identifying the number of the cluster using k_mer_clustering.R, we will make the heatmap plots
+# Args:
+# cluster_gap: Clustering gap statistics generated from k_mer_clustering.R
+# df_scale: Combined normalized scaled matrix generated from k_mer_clustering.R
+# saveDir: saving directory
+# clus_num: Based on the optimal cluster identified number needs to be divided
+# deseq_dataset: raw count datasets to identify the background peaks 
+# In this function we also identify the foreground and background peaks for each cluster so that we can perform the Homer for each cluster
+
 k_means_plot <- function(cluster_gap, df_scale, saveDir,clus_num,deseq_dataset){
   `%notin%` <- Negate(`%in%`)
   dir.create(paste(saveDir,"Clustering",sep = ""),showWarnings = FALSE)
