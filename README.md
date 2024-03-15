@@ -1,5 +1,6 @@
 # ATACseq
 Automation of the ATACseq pipeline
+The information about each parameter has been provided at the top in the R file of each function
 
 ## Preprocessing
 
