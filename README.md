@@ -1,5 +1,6 @@
 # ATACseq
 Automation of the ATACseq pipeline
+
 The information about each parameter has been provided at the top in the R file of each function
 
 ## Preprocessing
@@ -100,9 +101,10 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
    The Output can be visualize here ATACseq/Rplots.pdf
 
 6. Then further we performed the ChipSeeker and rGREAT to annotate the peaks
-           pipeline_function/ATAC_Great.R
 
-7. **ChormVar**
+    `pipeline_function/ATAC_Great.R`
+
+8. **ChormVar** : ChromVar also perform the Transcription factor enrichment including all the peaks irrespective it is differential or not. 
 
         source("./pipeline_function/ATAC_ChromVar.R")
 
@@ -118,7 +120,9 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
                       Group = "Group",
                       col_arrange = c("naïve","cm","em","temra","lat2","lyt1","lyt2"))
 
-   
+9. **BigWig Merge** : Combine the bigwig files based on the groups like naive, cm, em etc.
+
+  ` pipeline_function/ATAC_bw_merge.R    `
    
 Also you can perform preprocessing step using these function
 
