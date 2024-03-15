@@ -123,9 +123,7 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
 9. **BigWig Merge** : Combine the bigwig files based on the groups like naive, cm, em etc.
 
   ` pipeline_function/ATAC_bw_merge.R    `
+
+
    
-Also you can perform preprocessing step using these function
-
-The Version Control has been done through RStudio
-
 If there is any issue please comment.
