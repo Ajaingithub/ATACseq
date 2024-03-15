@@ -1,6 +1,13 @@
-
+# This function is run after running the splot_ATACseq.R i.e. after we have identified the number of overlaps that is required for filtering the peaks
+# This function is used for filtering the peaks so that the matrix could be further use for the downstream analysis
 # Args:
-# All_merge_path: 
+# All_merge_path: The path of the all_merge.txt (output for splot_ATACseq.R)
+# overlaps: Depending on the Splot generated from splot_ATAC.R decide the number of overlaps to remove the reads with less than overlap numnber
+# saveDir: save directory path
+# bam_path: sorted remove duplicate bam files for all the samples present in the all_merge.txt
+# blacklist_region: To remove the blacklisted region from the ATAC data
+# sampleinfo: samples metadata 
+
 After_Splot <- function(All_merge_path,overlaps,saveDir,bam_path,blacklist_region,sampleinfo){
   message("loading All merge file")
   All_merge <- read.table(All_merge_path, sep = "\t", header = TRUE)
