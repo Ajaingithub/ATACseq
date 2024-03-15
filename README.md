@@ -101,6 +101,24 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
 6. Then further we performed the ChipSeeker and rGREAT to annotate the peaks
            pipeline_function/ATAC_Great.R
 
+7. **ChormVar**
+
+        source("./pipeline_function/ATAC_ChromVar.R")
+
+        ATAC_ChromVar(mainDir = "/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Ines/CD8_lytic/tohg38/Analysis/downstream/",
+                      saveDir = "/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Ines/CD8_lytic/tohg38/Analysis/downstream/ChromVar/",
+                      sampleinfo = read.table(paste(mainDir,"sampleinfo3.txt", sep = ""),sep = "\t", header = T) # this provide the metadata information,
+                      SampleID = SampleId,
+                      SampleDepth = "SampleDepth",
+                      SampleID_2 = SampleID_2,
+                      core=32,
+                      min_peaks=0.15,
+                      min_depth=1500,
+                      Group = "Group",
+                      col_arrange = c("naïve","cm","em","temra","lat2","lyt1","lyt2"))
+
+   
+   
 Also you can perform preprocessing step using these function
 
 The Version Control has been done through RStudio
