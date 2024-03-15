@@ -43,6 +43,7 @@ This include filtering of the ATAC peaks and samples to be used for downstream a
                      blacklist_region = hg38_blacklist_region)
 
 ## Downstream Analysis
+This analysis will perform PCA, Differential, kmeans clustering, ChromVar, Homer, and bigwig merging.
 1. **PCA**
    
         source("/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Resources/ATACseq/PCA.R")
@@ -54,7 +55,7 @@ This include filtering of the ATAC peaks and samples to be used for downstream a
                  color = "Group",
                  shape = "Batch")
    
-3. **Differential**: Based on the PCA result perform differential
+2. **Differential**: Based on the PCA result perform differential
    
        source("/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Resources/ATACseq/differential_ATAC.R")
        ATAC_differential(mainDir = maindir,
@@ -63,7 +64,28 @@ This include filtering of the ATAC peaks and samples to be used for downstream a
                          comparison=comparison,
                          main_name = "CD8_EBV")
 
-The functions can be used to perform PCA, Differential, kmeans clustering, ChromVar, Homer, and bigwig merging.
+3. **Kmeans clustering & heatmap**:
+Using the differential result we develop the kmeans clustering
+a. **kmeans_clustering_ATAC** : This function will generate the gap statistics to identify how many cluster (K) can be generated
+
+           source("/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Resources/ATACseq/k_mer_clustering.R")
+           kmeans_clustering_ATAC(differential_peaks = diff_peaks_vec,
+                                   rlog_dds = rld,
+                                   sampleinfo = sampleinfo,
+                                   Group = "Group",
+                                   saveDir = savedir)
+   
+b. **k_means_plots.R** : This function will generate the heatmap with 
+
+        source("/research/labs/immunology/goronzy_weyand/GoronzyLab_Mayo/Abhinav/Resources/ATACseq/k_means_plots.R")
+        k_means_plot(cluster_gap = gap_stat_2, 
+                        df_scale = df_scale, 
+                        saveDir = savedir, 
+                        clus_num = 14,
+                        deseq_dataset = deseq_dataset)
+
+4. 
+
 
 Also you can perform preprocessing step using these function
 
