@@ -1,4 +1,12 @@
 ### Runnung K-mer clustering for all #####
+# This function will generate the gap statistics to identify how many cluster (K) can be generated
+# Args: 
+# Differential_peaks: Differential Peaks generated during the previous process differential_ATAC.R
+# rlog_dds: rlog Normalized counts data
+# sampleinfo: samples metadata
+# Group: Column from the count matrix need to combine
+# saveDir: save directory
+
 kmeans_clustering_ATAC <- function(differential_peaks,rlog_dds,sampleinfo,Group,saveDir){
   cnts2.norm <- assay(rlog_dds)
   cnts2.norm.sig <- cnts2.norm[match(differential_peaks,rownames(cnts2.norm)),]
