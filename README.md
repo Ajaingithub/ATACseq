@@ -20,6 +20,9 @@ The bash script start from fastqs to Peaks calling. Generated for hg19 and hg38 
 
 This pipeline will submit multiple samples into the cluster compute nodes and will run parallely. 
 
+![Screenshot 2024-04-01 at 5 58 02 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/7314925b-be5e-4a3a-bd79-4ce8f2175233) ![Screenshot 2024-04-01 at 5 58 28 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/9e3a586d-37f4-427d-b2a0-834f25884819)
+
+
 ## Postprocessing
 This include filtering of the ATAC peaks and samples to be used for downstream analysis
 1. Make the Splot that could be used for identify the overallping peaks and merging of the samples
@@ -30,7 +33,10 @@ This include filtering of the ATAC peaks and samples to be used for downstream a
                build = "hg38",
                species = "human")
 
-2. Based on the ouput from the splot_ATACseq.R. Filter out the non-overlap peaksm blacklisted region peaks, and low quality peaks so that the matrix could be further use for the downstream analysis
+   ![Screenshot 2024-04-01 at 6 01 19 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/45298048-8cbb-4b08-8a60-3fd54766f3de)
+
+
+3. Based on the ouput from the splot_ATACseq.R. Filter out the non-overlap peaksm blacklisted region peaks, and low quality peaks so that the matrix could be further use for the downstream analysis
 
          source("./pipeline_function/After_Splot.R")
          After_Splot(All_merge_path = All_merge_path,
@@ -39,6 +45,7 @@ This include filtering of the ATAC peaks and samples to be used for downstream a
                      saveDir = savedir,
                      bam_path = sampleinfo2$bam_location,
                      blacklist_region = hg38_blacklist_region)
+   
 
 ## Downstream Analysis
 This analysis will perform PCA, Differential, kmeans clustering, ChromVar, Homer, and bigwig merging.
@@ -53,7 +60,9 @@ This analysis will perform PCA, Differential, kmeans clustering, ChromVar, Homer
                  color = "Group",
                  shape = "Batch")
    
-2. **Differential**: Based on the PCA result perform differential
+   ![Screenshot 2024-04-01 at 5 59 55 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/d5c2a99f-bd69-4c82-90d8-6c78e3b5b93f)
+
+3. **Differential**: Based on the PCA result perform differential
    
        source("./pipeline_function/differential_ATAC.R")
        ATAC_differential(mainDir = maindir,
@@ -62,7 +71,7 @@ This analysis will perform PCA, Differential, kmeans clustering, ChromVar, Homer
                          comparison=comparison,
                          main_name = "CD8_EBV")
 
-3. **Kmeans clustering & heatmap**:
+4. **Kmeans clustering & heatmap**:
 Using the differential result we develop the kmeans clustering
 a. **kmeans_clustering_ATAC** : This function will generate the gap statistics to identify how many cluster (K) can be generated
 
@@ -73,6 +82,8 @@ a. **kmeans_clustering_ATAC** : This function will generate the gap statistics t
                                    Group = "Group",
                                    saveDir = savedir)
    
+   ![Screenshot 2024-04-01 at 6 02 45 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/99c55e7c-3eae-4a40-b7ba-ef70838a2940)
+
 b. **k_means_plots.R** : This function will generate the heatmap with foreground and background peaks for each cluster so that we can use HOMER to identify the Enriched Transcription factor activity within the cluster.
 
         source("pipeline_function/k_means_plots.R")
@@ -81,6 +92,8 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
                         saveDir = savedir, 
                         clus_num = 14,
                         deseq_dataset = deseq_dataset)
+
+![Screenshot 2024-04-01 at 6 05 37 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/cce8e81b-dd94-4ab7-9195-ff1729e21472)
 
 4. **Homer** :
    We will generate the Enriched Transcription factor output from each of the clusters for which we have foreground and background peaks
@@ -99,6 +112,8 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
                       column_anno = column_anno)
 
    The Output can be visualize here ATACseq/Rplots.pdf
+   
+![Screenshot 2024-04-01 at 6 04 00 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/c23af4fd-c6c0-44bd-a08a-8315ea9c341f)
 
 6. Then further we performed the ChipSeeker and rGREAT to annotate the peaks
 
@@ -119,6 +134,8 @@ b. **k_means_plots.R** : This function will generate the heatmap with foreground
                       min_depth=1500,
                       Group = "Group",
                       col_arrange = c("naïve","cm","em","temra","lat2","lyt1","lyt2"))
+   
+![Screenshot 2024-04-01 at 6 06 55 PM](https://github.com/Ajaingithub/ATACseq/assets/37553954/8ec809d6-ffc4-4d39-b712-955883ac5e91)
 
 9. **BigWig Merge** : Combine the bigwig files based on the groups like naive, cm, em etc.
 
